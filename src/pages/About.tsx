@@ -2,12 +2,37 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { HelpCircle } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       
+      {/* Breadcrumb */}
+      <div className="container mx-auto px-4 pt-4">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link to="/">Início</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>Sobre Nós</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </div>
+
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="text-4xl font-bold text-foreground mb-8">Sobre o FutZone</h1>
 
