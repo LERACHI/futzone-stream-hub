@@ -15,6 +15,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MessageSquare, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const ScrollRevealDiv = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={`transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -59,106 +75,112 @@ const Contact = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <div className="bg-card border border-border rounded-lg p-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
-              <MessageSquare className="h-6 w-6 mr-2 text-accent" />
-              Envie sua Mensagem
-            </h2>
+          <ScrollRevealDiv>
+            <div className="bg-card border border-border rounded-lg p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center">
+                <MessageSquare className="h-6 w-6 mr-2 text-accent" />
+                Envie sua Mensagem
+              </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Nome
-                </label>
-                <Input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                  placeholder="Seu nome"
-                />
-              </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                    Nome
+                  </label>
+                  <Input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    placeholder="Seu nome"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                  E-mail
-                </label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  required
-                  placeholder="seu@email.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                    E-mail
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    required
+                    placeholder="seu@email.com"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                  Assunto
-                </label>
-                <Input
-                  id="subject"
-                  type="text"
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  required
-                  placeholder="Como podemos ajudar?"
-                />
-              </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                    Assunto
+                  </label>
+                  <Input
+                    id="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    required
+                    placeholder="Como podemos ajudar?"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Mensagem
-                </label>
-                <Textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                  placeholder="Escreva sua mensagem..."
-                  rows={6}
-                />
-              </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                    Mensagem
+                  </label>
+                  <Textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    required
+                    placeholder="Escreva sua mensagem..."
+                    rows={6}
+                  />
+                </div>
 
-              <Button type="submit" className="w-full bg-accent hover:bg-accent/90">
-                <Send className="h-4 w-4 mr-2" />
-                Enviar Mensagem
-              </Button>
-            </form>
-          </div>
+                <Button type="submit" className="w-full bg-accent hover:bg-accent/90">
+                  <Send className="h-4 w-4 mr-2" />
+                  Enviar Mensagem
+                </Button>
+              </form>
+            </div>
+          </ScrollRevealDiv>
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="bg-card border border-border rounded-lg p-6">
-              <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center">
-                <Mail className="h-6 w-6 mr-2 text-accent" />
-                Informações de Contato
-              </h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  <strong className="text-foreground">E-mail:</strong><br />
-                  contato@futzone.com
-                </p>
-                <p>
-                  <strong className="text-foreground">Suporte:</strong><br />
-                  suporte@futzone.com
-                </p>
-                <p>
-                  <strong className="text-foreground">Horário de Atendimento:</strong><br />
-                  Segunda a Sexta: 9h às 18h
+            <ScrollRevealDiv delay={100}>
+              <div className="bg-card border border-border rounded-lg p-6">
+                <h2 className="text-2xl font-bold text-foreground mb-4 flex items-center">
+                  <Mail className="h-6 w-6 mr-2 text-accent" />
+                  Informações de Contato
+                </h2>
+                <div className="space-y-4 text-muted-foreground">
+                  <p>
+                    <strong className="text-foreground">E-mail:</strong><br />
+                    contato@futzone.com
+                  </p>
+                  <p>
+                    <strong className="text-foreground">Suporte:</strong><br />
+                    suporte@futzone.com
+                  </p>
+                  <p>
+                    <strong className="text-foreground">Horário de Atendimento:</strong><br />
+                    Segunda a Sexta: 9h às 18h
+                  </p>
+                </div>
+              </div>
+            </ScrollRevealDiv>
+
+            <ScrollRevealDiv delay={200}>
+              <div className="bg-muted border border-border rounded-lg p-6">
+                <h3 className="font-semibold text-foreground mb-3">Tempo de Resposta</h3>
+                <p className="text-sm text-muted-foreground">
+                  Normalmente respondemos em até 24 horas úteis. Para questões urgentes, 
+                  utilize o e-mail de suporte.
                 </p>
               </div>
-            </div>
-
-            <div className="bg-muted border border-border rounded-lg p-6">
-              <h3 className="font-semibold text-foreground mb-3">Tempo de Resposta</h3>
-              <p className="text-sm text-muted-foreground">
-                Normalmente respondemos em até 24 horas úteis. Para questões urgentes, 
-                utilize o e-mail de suporte.
-              </p>
-            </div>
+            </ScrollRevealDiv>
           </div>
         </div>
       </main>

@@ -10,6 +10,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?: string }) => {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id={id}
+      className={`transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+    >
+      {children}
+    </section>
+  );
+};
 
 const Legal = () => {
   return (
@@ -107,25 +123,25 @@ const Legal = () => {
         </nav>
 
         <div className="space-y-8 text-muted-foreground">
-          <section id="natureza-servico">
+          <ScrollRevealSection id="natureza-servico">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Natureza do Serviço</h2>
             <p className="leading-relaxed">
               O FutZone é um serviço de agregação de links que direciona usuários para plataformas 
               e canais esportivos oficiais. Não hospedamos, transmitimos, armazenamos ou distribuímos 
               qualquer conteúdo audiovisual em nossos servidores.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="direitos-autorais">
+          <ScrollRevealSection id="direitos-autorais">
             <h2 className="text-2xl font-bold text-foreground mb-4">2. Direitos Autorais</h2>
             <p className="leading-relaxed">
               Todo o conteúdo acessado através dos links fornecidos pertence aos respectivos 
               detentores de direitos autorais. O FutZone respeita a propriedade intelectual e 
               incentiva o acesso legal ao conteúdo esportivo.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="responsabilidades">
+          <ScrollRevealSection id="responsabilidades">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Responsabilidades</h2>
             <p className="leading-relaxed mb-3">O FutZone não é responsável por:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -134,9 +150,9 @@ const Legal = () => {
               <li>Alterações, suspensões ou descontinuação de serviços de terceiros</li>
               <li>Políticas de privacidade ou práticas de sites externos</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="uso-aceitavel">
+          <ScrollRevealSection id="uso-aceitavel">
             <h2 className="text-2xl font-bold text-foreground mb-4">4. Uso Aceitável</h2>
             <p className="leading-relaxed mb-3">Ao utilizar o FutZone, você concorda em:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -145,55 +161,55 @@ const Legal = () => {
               <li>Respeitar os termos de uso das plataformas de destino</li>
               <li>Não utilizar o serviço para atividades fraudulentas ou prejudiciais</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="links-terceiros">
+          <ScrollRevealSection id="links-terceiros">
             <h2 className="text-2xl font-bold text-foreground mb-4">5. Links para Sites de Terceiros</h2>
             <p className="leading-relaxed">
               Os links fornecidos direcionam para sites de terceiros sobre os quais não temos controle. 
               Não endossamos nem assumimos responsabilidade pelo conteúdo, políticas ou práticas desses sites.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="modificacoes">
+          <ScrollRevealSection id="modificacoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">6. Modificações no Serviço</h2>
             <p className="leading-relaxed">
               Reservamo-nos o direito de modificar, suspender ou descontinuar qualquer aspecto do 
               FutZone a qualquer momento, sem aviso prévio.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="limitacao">
+          <ScrollRevealSection id="limitacao">
             <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitação de Responsabilidade</h2>
             <p className="leading-relaxed">
               O FutZone é fornecido "como está", sem garantias de qualquer tipo. Não nos responsabilizamos 
               por danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso do serviço.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="propriedade-intelectual">
+          <ScrollRevealSection id="propriedade-intelectual">
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Propriedade Intelectual</h2>
             <p className="leading-relaxed">
               O design, layout, código e conteúdo original do FutZone são protegidos por direitos autorais 
               e outras leis de propriedade intelectual. Não é permitida a reprodução sem autorização.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="lei-aplicavel">
+          <ScrollRevealSection id="lei-aplicavel">
             <h2 className="text-2xl font-bold text-foreground mb-4">9. Lei Aplicável</h2>
             <p className="leading-relaxed">
               Este aviso legal é regido pelas leis brasileiras. Quaisquer disputas serão resolvidas 
               nos tribunais competentes do Brasil.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="contato">
+          <ScrollRevealSection id="contato">
             <h2 className="text-2xl font-bold text-foreground mb-4">10. Contato</h2>
             <p className="leading-relaxed">
               Para questões legais ou reportar violações, entre em contato através do e-mail: 
               legal@futzone.com
             </p>
-          </section>
+          </ScrollRevealSection>
         </div>
       </main>
 

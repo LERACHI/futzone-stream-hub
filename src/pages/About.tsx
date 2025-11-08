@@ -10,6 +10,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?: string }) => {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id={id}
+      className={`transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+    >
+      {children}
+    </section>
+  );
+};
 
 const About = () => {
   return (
@@ -94,24 +110,24 @@ const About = () => {
         </nav>
 
         <div className="space-y-8">
-          <section id="sobre-futzone">
+          <ScrollRevealSection id="sobre-futzone">
             <h2 className="text-2xl font-bold text-foreground mb-4">Sobre o FutZone</h2>
             <p className="text-muted-foreground leading-relaxed">
               O FutZone é sua plataforma completa para descobrir e acessar os melhores canais esportivos 
               e plataformas de streaming. Reunimos em um só lugar todos os links para que você possa 
               acompanhar seus times e competições favoritas.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="nossa-missao">
+          <ScrollRevealSection id="nossa-missao">
             <h2 className="text-2xl font-bold text-foreground mb-4">Nossa Missão</h2>
             <p className="text-muted-foreground leading-relaxed">
               Nossa missão é facilitar o acesso ao conteúdo esportivo de qualidade, conectando fãs 
               às transmissões oficiais e legítimas dos principais canais e plataformas do mercado.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="o-que-oferecemos">
+          <ScrollRevealSection id="o-que-oferecemos">
             <h2 className="text-2xl font-bold text-foreground mb-4">O que Oferecemos</h2>
             <ul className="list-disc list-inside text-muted-foreground space-y-2">
               <li>Agregação de links para canais esportivos oficiais</li>
@@ -120,26 +136,26 @@ const About = () => {
               <li>Interface moderna e fácil de usar</li>
               <li>Acesso rápido às principais plataformas de streaming</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="transparencia">
+          <ScrollRevealSection id="transparencia">
             <h2 className="text-2xl font-bold text-foreground mb-4">Transparência e Legalidade</h2>
             <p className="text-muted-foreground leading-relaxed">
               É importante destacar que o FutZone não hospeda, transmite ou armazena qualquer conteúdo 
               audiovisual. Somos apenas um agregador de links que direciona você para as fontes oficiais 
               e legítimas. Respeitamos todos os direitos autorais e incentivamos o acesso legal ao conteúdo.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="privacidade">
+          <ScrollRevealSection id="privacidade">
             <h2 className="text-2xl font-bold text-foreground mb-4">Compromisso com sua Privacidade</h2>
             <p className="text-muted-foreground leading-relaxed">
               Valorizamos sua privacidade e segurança. Não coletamos dados pessoais sensíveis e não 
               compartilhamos informações com terceiros sem seu consentimento.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="informacoes-coletadas">
+          <ScrollRevealSection id="informacoes-coletadas">
             <h2 className="text-2xl font-bold text-foreground mb-4">Informações que Coletamos</h2>
             <p className="text-muted-foreground leading-relaxed mb-3">
               Para melhorar sua experiência, podemos coletar informações não identificáveis como:
@@ -149,33 +165,33 @@ const About = () => {
               <li>Preferências de conteúdo</li>
               <li>Informações técnicas do dispositivo</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="uso-informacoes">
+          <ScrollRevealSection id="uso-informacoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">Como Usamos suas Informações</h2>
             <p className="text-muted-foreground leading-relaxed">
               Utilizamos as informações coletadas para melhorar nossos serviços, personalizar sua 
               experiência e fornecer conteúdo relevante de acordo com seus interesses.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="base-legal">
+          <ScrollRevealSection id="base-legal">
             <h2 className="text-2xl font-bold text-foreground mb-4">Base Legal para Processamento de Dados</h2>
             <p className="text-muted-foreground leading-relaxed">
               Processamos seus dados com base no seu consentimento e em nosso interesse legítimo de 
               fornecer e melhorar nossos serviços, em conformidade com a LGPD e outras legislações aplicáveis.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="alteracoes">
+          <ScrollRevealSection id="alteracoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">Alterações nesta Política de Privacidade</h2>
             <p className="text-muted-foreground leading-relaxed">
               Podemos atualizar esta política periodicamente. Recomendamos que você revise esta página 
               regularmente para se manter informado sobre quaisquer alterações.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="contato">
+          <ScrollRevealSection id="contato">
             <h2 className="text-2xl font-bold text-foreground mb-4">Contato e Suporte</h2>
             <p className="text-muted-foreground leading-relaxed mb-4">
               Tem dúvidas ou sugestões? Entre em contato conosco através da nossa{" "}
@@ -196,7 +212,7 @@ const About = () => {
                 </Link>
               </div>
             </div>
-          </section>
+          </ScrollRevealSection>
         </div>
       </main>
 

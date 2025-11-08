@@ -9,6 +9,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?: string }) => {
+  const { ref, isVisible } = useScrollReveal();
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id={id}
+      className={`transition-all duration-700 ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+    >
+      {children}
+    </section>
+  );
+};
 
 const Privacy = () => {
   return (
@@ -89,15 +105,15 @@ const Privacy = () => {
         </nav>
 
         <div className="space-y-8 text-muted-foreground">
-          <section id="introducao">
+          <ScrollRevealSection id="introducao">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Introdução</h2>
             <p className="leading-relaxed">
               Esta Política de Privacidade descreve como o FutZone coleta, usa, armazena e protege 
               suas informações pessoais quando você utiliza nosso site.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="informacoes-coletadas">
+          <ScrollRevealSection id="informacoes-coletadas">
             <h2 className="text-2xl font-bold text-foreground mb-4">2. Informações que Coletamos</h2>
             <p className="leading-relaxed mb-3">Coletamos as seguintes informações:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -106,9 +122,9 @@ const Privacy = () => {
               <li>Preferências de conteúdo e configurações</li>
               <li>Informações fornecidas voluntariamente em formulários de contato</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="uso-informacoes">
+          <ScrollRevealSection id="uso-informacoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Como Usamos suas Informações</h2>
             <p className="leading-relaxed mb-3">Utilizamos suas informações para:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -118,33 +134,33 @@ const Privacy = () => {
               <li>Responder a suas solicitações e dúvidas</li>
               <li>Manter a segurança e integridade do site</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="compartilhamento">
+          <ScrollRevealSection id="compartilhamento">
             <h2 className="text-2xl font-bold text-foreground mb-4">4. Compartilhamento de Informações</h2>
             <p className="leading-relaxed">
               Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, 
               exceto quando necessário para cumprir obrigações legais ou proteger nossos direitos.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="cookies">
+          <ScrollRevealSection id="cookies">
             <h2 className="text-2xl font-bold text-foreground mb-4">5. Cookies</h2>
             <p className="leading-relaxed">
               Utilizamos cookies para melhorar sua experiência de navegação. Você pode configurar 
               seu navegador para recusar cookies, mas isso pode afetar algumas funcionalidades do site.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="seguranca">
+          <ScrollRevealSection id="seguranca">
             <h2 className="text-2xl font-bold text-foreground mb-4">6. Segurança</h2>
             <p className="leading-relaxed">
               Implementamos medidas de segurança técnicas e organizacionais para proteger suas 
               informações contra acesso não autorizado, alteração, divulgação ou destruição.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="direitos-lgpd">
+          <ScrollRevealSection id="direitos-lgpd">
             <h2 className="text-2xl font-bold text-foreground mb-4">7. Seus Direitos (LGPD)</h2>
             <p className="leading-relaxed mb-3">De acordo com a LGPD, você tem o direito de:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -154,23 +170,23 @@ const Privacy = () => {
               <li>Solicitar a anonimização, bloqueio ou eliminação de dados</li>
               <li>Revogar o consentimento</li>
             </ul>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="alteracoes">
+          <ScrollRevealSection id="alteracoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Alterações nesta Política</h2>
             <p className="leading-relaxed">
               Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você 
               sobre mudanças significativas através do site.
             </p>
-          </section>
+          </ScrollRevealSection>
 
-          <section id="contato">
+          <ScrollRevealSection id="contato">
             <h2 className="text-2xl font-bold text-foreground mb-4">9. Contato</h2>
             <p className="leading-relaxed">
               Para questões sobre privacidade ou para exercer seus direitos, entre em contato 
               através do e-mail: privacidade@futzone.com
             </p>
-          </section>
+          </ScrollRevealSection>
         </div>
       </main>
 

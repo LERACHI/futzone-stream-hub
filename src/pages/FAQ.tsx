@@ -15,6 +15,29 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
+const ScrollRevealAccordion = ({ faq, index }: { faq: any; index: number }) => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
+  return (
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={`transition-all duration-500 ${
+        isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
+      }`}
+      style={{ transitionDelay: `${index * 50}ms` }}
+    >
+      <AccordionItem value={`item-${index}`} id={faq.id} className="bg-card border border-border rounded-lg px-6 scroll-mt-4">
+        <AccordionTrigger className="text-left hover:no-underline">
+          <span className="font-semibold text-foreground">{faq.question}</span>
+        </AccordionTrigger>
+        <AccordionContent className="text-muted-foreground">
+          {faq.answer}
+        </AccordionContent>
+      </AccordionItem>
+    </div>
+  );
+};
 
 const FAQ = () => {
   const faqs = [
@@ -108,14 +131,7 @@ const FAQ = () => {
 
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} id={faq.id} className="bg-card border border-border rounded-lg px-6 scroll-mt-4">
-              <AccordionTrigger className="text-left hover:no-underline">
-                <span className="font-semibold text-foreground">{faq.question}</span>
-              </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+            <ScrollRevealAccordion key={index} faq={faq} index={index} />
           ))}
         </Accordion>
       </main>
