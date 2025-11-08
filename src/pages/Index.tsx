@@ -2,8 +2,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ChannelCard from "@/components/ChannelCard";
 import Disclaimer from "@/components/Disclaimer";
+import { useState } from "react";
+import { LayoutGrid, List } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   const channels = [
     {
       name: "ESPN",
@@ -83,28 +88,105 @@ const Index = () => {
       
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Assista Agora:
-          </h1>
-          <p className="text-muted-foreground">
-            Acesse os melhores canais esportivos e plataformas de streaming
-          </p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+              Assista Agora:
+            </h1>
+            <p className="text-muted-foreground">
+              Acesse os melhores canais esportivos e plataformas de streaming
+            </p>
+          </div>
+          
+          {/* View Toggle */}
+          <div className="flex gap-2 bg-muted/50 p-1 rounded-lg">
+            <Button
+              variant={viewMode === "grid" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setViewMode("grid")}
+              className="transition-all"
+            >
+              <LayoutGrid className="h-4 w-4 mr-2" />
+              Grade
+            </Button>
+            <Button
+              variant={viewMode === "list" ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setViewMode("list")}
+              className="transition-all"
+            >
+              <List className="h-4 w-4 mr-2" />
+              Lista
+            </Button>
+          </div>
         </div>
 
-        {/* Channels Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
-          {channels.map((channel) => (
-            <ChannelCard
-              key={channel.name}
-              name={channel.name}
-              description={channel.description}
-              imageUrl={channel.imageUrl}
-              link={channel.link}
-              bgColor={channel.bgColor}
-            />
-          ))}
-        </div>
+        {/* Channels Grid View */}
+        {viewMode === "grid" && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 animate-fade-in">
+            {channels.map((channel) => (
+              <ChannelCard
+                key={channel.name}
+                name={channel.name}
+                description={channel.description}
+                imageUrl={channel.imageUrl}
+                link={channel.link}
+                bgColor={channel.bgColor}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Channels List View */}
+        {viewMode === "list" && (
+          <div className="space-y-4 mb-8 animate-fade-in">
+            {channels.map((channel) => (
+              <a
+                key={channel.name}
+                href={channel.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block group"
+              >
+                <div className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg transition-all hover:scale-[1.02] hover:shadow-lg hover:border-primary/50">
+                  <div className={`${channel.bgColor} w-20 h-20 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden`}>
+                    <img
+                      src={channel.imageUrl}
+                      alt={channel.name}
+                      className="w-full h-full object-contain p-2"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-1">
+                      {channel.name}
+                    </h3>
+                    <p className="text-muted-foreground line-clamp-2">
+                      {channel.description}
+                    </p>
+                  </div>
+                  <div className="text-muted-foreground group-hover:text-primary transition-colors">
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
 
         {/* Disclaimer */}
         <Disclaimer />
