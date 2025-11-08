@@ -2,6 +2,13 @@ import { Link, useLocation } from "react-router-dom";
 import { Home, Calendar, Tv, Users, Table, TrendingUp, Newspaper, Video, BookOpen, Info, Search } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const Navbar = () => {
   const location = useLocation();
@@ -63,24 +70,37 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="lg:hidden flex overflow-x-auto space-x-2 pb-3 scrollbar-hide">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = location.pathname === item.path;
-            return (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`nav-link flex items-center space-x-1 text-sm whitespace-nowrap ${
-                  isActive ? "nav-link-active" : ""
-                }`}
-              >
-                <Icon className="h-4 w-4" />
-                <span>{item.name}</span>
-              </Link>
-            );
-          })}
+        {/* Mobile Navigation Carousel */}
+        <div className="lg:hidden pb-3">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: false,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2">
+              {navItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = location.pathname === item.path;
+                return (
+                  <CarouselItem key={item.path} className="basis-auto pl-2">
+                    <Link
+                      to={item.path}
+                      className={`nav-link flex items-center space-x-1 text-sm whitespace-nowrap transition-all duration-300 hover:scale-110 hover:shadow-lg ${
+                        isActive ? "nav-link-active" : ""
+                      }`}
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span>{item.name}</span>
+                    </Link>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+            <CarouselPrevious className="left-0" />
+            <CarouselNext className="right-0" />
+          </Carousel>
         </div>
 
         {/* Mobile Search */}
