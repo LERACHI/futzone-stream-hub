@@ -10,8 +10,60 @@ const Privacy = () => {
         <h1 className="text-4xl font-bold text-foreground mb-4">Política de Privacidade</h1>
         <p className="text-muted-foreground mb-8">Última atualização: Janeiro de 2025</p>
 
+        {/* Índice de Navegação */}
+        <nav className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
+          <h3 className="text-lg font-semibold text-foreground mb-4">Navegação Rápida</h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <li>
+              <a href="#introducao" className="text-accent hover:underline">
+                1. Introdução
+              </a>
+            </li>
+            <li>
+              <a href="#informacoes-coletadas" className="text-accent hover:underline">
+                2. Informações que Coletamos
+              </a>
+            </li>
+            <li>
+              <a href="#uso-informacoes" className="text-accent hover:underline">
+                3. Como Usamos suas Informações
+              </a>
+            </li>
+            <li>
+              <a href="#compartilhamento" className="text-accent hover:underline">
+                4. Compartilhamento de Informações
+              </a>
+            </li>
+            <li>
+              <a href="#cookies" className="text-accent hover:underline">
+                5. Cookies
+              </a>
+            </li>
+            <li>
+              <a href="#seguranca" className="text-accent hover:underline">
+                6. Segurança
+              </a>
+            </li>
+            <li>
+              <a href="#direitos-lgpd" className="text-accent hover:underline">
+                7. Seus Direitos (LGPD)
+              </a>
+            </li>
+            <li>
+              <a href="#alteracoes" className="text-accent hover:underline">
+                8. Alterações nesta Política
+              </a>
+            </li>
+            <li>
+              <a href="#contato" className="text-accent hover:underline">
+                9. Contato
+              </a>
+            </li>
+          </ul>
+        </nav>
+
         <div className="space-y-8 text-muted-foreground">
-          <section>
+          <section id="introducao">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Introdução</h2>
             <p className="leading-relaxed">
               Esta Política de Privacidade descreve como o FutZone coleta, usa, armazena e protege 
@@ -19,7 +71,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="informacoes-coletadas">
             <h2 className="text-2xl font-bold text-foreground mb-4">2. Informações que Coletamos</h2>
             <p className="leading-relaxed mb-3">Coletamos as seguintes informações:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -30,7 +82,7 @@ const Privacy = () => {
             </ul>
           </section>
 
-          <section>
+          <section id="uso-informacoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Como Usamos suas Informações</h2>
             <p className="leading-relaxed mb-3">Utilizamos suas informações para:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -42,7 +94,7 @@ const Privacy = () => {
             </ul>
           </section>
 
-          <section>
+          <section id="compartilhamento">
             <h2 className="text-2xl font-bold text-foreground mb-4">4. Compartilhamento de Informações</h2>
             <p className="leading-relaxed">
               Não vendemos, alugamos ou compartilhamos suas informações pessoais com terceiros, 
@@ -50,7 +102,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="cookies">
             <h2 className="text-2xl font-bold text-foreground mb-4">5. Cookies</h2>
             <p className="leading-relaxed">
               Utilizamos cookies para melhorar sua experiência de navegação. Você pode configurar 
@@ -58,7 +110,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="seguranca">
             <h2 className="text-2xl font-bold text-foreground mb-4">6. Segurança</h2>
             <p className="leading-relaxed">
               Implementamos medidas de segurança técnicas e organizacionais para proteger suas 
@@ -66,7 +118,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="direitos-lgpd">
             <h2 className="text-2xl font-bold text-foreground mb-4">7. Seus Direitos (LGPD)</h2>
             <p className="leading-relaxed mb-3">De acordo com a LGPD, você tem o direito de:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -78,7 +130,7 @@ const Privacy = () => {
             </ul>
           </section>
 
-          <section>
+          <section id="alteracoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Alterações nesta Política</h2>
             <p className="leading-relaxed">
               Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você 
@@ -86,7 +138,7 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="contato">
             <h2 className="text-2xl font-bold text-foreground mb-4">9. Contato</h2>
             <p className="leading-relaxed">
               Para questões sobre privacidade ou para exercer seus direitos, entre em contato 

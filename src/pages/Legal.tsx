@@ -23,8 +23,65 @@ const Legal = () => {
           </div>
         </div>
 
+        {/* Índice de Navegação */}
+        <nav className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
+          <h3 className="text-lg font-semibold text-foreground mb-4">Navegação Rápida</h3>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+            <li>
+              <a href="#natureza-servico" className="text-accent hover:underline">
+                1. Natureza do Serviço
+              </a>
+            </li>
+            <li>
+              <a href="#direitos-autorais" className="text-accent hover:underline">
+                2. Direitos Autorais
+              </a>
+            </li>
+            <li>
+              <a href="#responsabilidades" className="text-accent hover:underline">
+                3. Responsabilidades
+              </a>
+            </li>
+            <li>
+              <a href="#uso-aceitavel" className="text-accent hover:underline">
+                4. Uso Aceitável
+              </a>
+            </li>
+            <li>
+              <a href="#links-terceiros" className="text-accent hover:underline">
+                5. Links para Sites de Terceiros
+              </a>
+            </li>
+            <li>
+              <a href="#modificacoes" className="text-accent hover:underline">
+                6. Modificações no Serviço
+              </a>
+            </li>
+            <li>
+              <a href="#limitacao" className="text-accent hover:underline">
+                7. Limitação de Responsabilidade
+              </a>
+            </li>
+            <li>
+              <a href="#propriedade-intelectual" className="text-accent hover:underline">
+                8. Propriedade Intelectual
+              </a>
+            </li>
+            <li>
+              <a href="#lei-aplicavel" className="text-accent hover:underline">
+                9. Lei Aplicável
+              </a>
+            </li>
+            <li>
+              <a href="#contato" className="text-accent hover:underline">
+                10. Contato
+              </a>
+            </li>
+          </ul>
+        </nav>
+
         <div className="space-y-8 text-muted-foreground">
-          <section>
+          <section id="natureza-servico">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Natureza do Serviço</h2>
             <p className="leading-relaxed">
               O FutZone é um serviço de agregação de links que direciona usuários para plataformas 
@@ -33,7 +90,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="direitos-autorais">
             <h2 className="text-2xl font-bold text-foreground mb-4">2. Direitos Autorais</h2>
             <p className="leading-relaxed">
               Todo o conteúdo acessado através dos links fornecidos pertence aos respectivos 
@@ -42,7 +99,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="responsabilidades">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Responsabilidades</h2>
             <p className="leading-relaxed mb-3">O FutZone não é responsável por:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -53,7 +110,7 @@ const Legal = () => {
             </ul>
           </section>
 
-          <section>
+          <section id="uso-aceitavel">
             <h2 className="text-2xl font-bold text-foreground mb-4">4. Uso Aceitável</h2>
             <p className="leading-relaxed mb-3">Ao utilizar o FutZone, você concorda em:</p>
             <ul className="list-disc list-inside space-y-2">
@@ -64,7 +121,7 @@ const Legal = () => {
             </ul>
           </section>
 
-          <section>
+          <section id="links-terceiros">
             <h2 className="text-2xl font-bold text-foreground mb-4">5. Links para Sites de Terceiros</h2>
             <p className="leading-relaxed">
               Os links fornecidos direcionam para sites de terceiros sobre os quais não temos controle. 
@@ -72,7 +129,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="modificacoes">
             <h2 className="text-2xl font-bold text-foreground mb-4">6. Modificações no Serviço</h2>
             <p className="leading-relaxed">
               Reservamo-nos o direito de modificar, suspender ou descontinuar qualquer aspecto do 
@@ -80,7 +137,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="limitacao">
             <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitação de Responsabilidade</h2>
             <p className="leading-relaxed">
               O FutZone é fornecido "como está", sem garantias de qualquer tipo. Não nos responsabilizamos 
@@ -88,7 +145,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="propriedade-intelectual">
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Propriedade Intelectual</h2>
             <p className="leading-relaxed">
               O design, layout, código e conteúdo original do FutZone são protegidos por direitos autorais 
@@ -96,7 +153,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="lei-aplicavel">
             <h2 className="text-2xl font-bold text-foreground mb-4">9. Lei Aplicável</h2>
             <p className="leading-relaxed">
               Este aviso legal é regido pelas leis brasileiras. Quaisquer disputas serão resolvidas 
@@ -104,7 +161,7 @@ const Legal = () => {
             </p>
           </section>
 
-          <section>
+          <section id="contato">
             <h2 className="text-2xl font-bold text-foreground mb-4">10. Contato</h2>
             <p className="leading-relaxed">
               Para questões legais ou reportar violações, entre em contato através do e-mail: 
