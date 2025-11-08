@@ -1,0 +1,122 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { AlertCircle } from "lucide-react";
+
+const Legal = () => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      
+      <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+        <h1 className="text-4xl font-bold text-foreground mb-4">Aviso Legal</h1>
+        <p className="text-muted-foreground mb-8">Termos de Uso e Condições</p>
+
+        <div className="bg-accent/10 border border-accent rounded-lg p-6 mb-8">
+          <div className="flex items-start space-x-3">
+            <AlertCircle className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
+            <div>
+              <h3 className="font-semibold text-foreground mb-2">Importante</h3>
+              <p className="text-sm text-muted-foreground">
+                Leia atentamente este aviso legal antes de utilizar o FutZone.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-8 text-muted-foreground">
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">1. Natureza do Serviço</h2>
+            <p className="leading-relaxed">
+              O FutZone é um serviço de agregação de links que direciona usuários para plataformas 
+              e canais esportivos oficiais. Não hospedamos, transmitimos, armazenamos ou distribuímos 
+              qualquer conteúdo audiovisual em nossos servidores.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">2. Direitos Autorais</h2>
+            <p className="leading-relaxed">
+              Todo o conteúdo acessado através dos links fornecidos pertence aos respectivos 
+              detentores de direitos autorais. O FutZone respeita a propriedade intelectual e 
+              incentiva o acesso legal ao conteúdo esportivo.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">3. Responsabilidades</h2>
+            <p className="leading-relaxed mb-3">O FutZone não é responsável por:</p>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Disponibilidade ou qualidade das transmissões em sites de terceiros</li>
+              <li>Conteúdo exibido em plataformas externas</li>
+              <li>Alterações, suspensões ou descontinuação de serviços de terceiros</li>
+              <li>Políticas de privacidade ou práticas de sites externos</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">4. Uso Aceitável</h2>
+            <p className="leading-relaxed mb-3">Ao utilizar o FutZone, você concorda em:</p>
+            <ul className="list-disc list-inside space-y-2">
+              <li>Usar o serviço apenas para fins legais</li>
+              <li>Não tentar burlar sistemas de proteção ou restrições de acesso</li>
+              <li>Respeitar os termos de uso das plataformas de destino</li>
+              <li>Não utilizar o serviço para atividades fraudulentas ou prejudiciais</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">5. Links para Sites de Terceiros</h2>
+            <p className="leading-relaxed">
+              Os links fornecidos direcionam para sites de terceiros sobre os quais não temos controle. 
+              Não endossamos nem assumimos responsabilidade pelo conteúdo, políticas ou práticas desses sites.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">6. Modificações no Serviço</h2>
+            <p className="leading-relaxed">
+              Reservamo-nos o direito de modificar, suspender ou descontinuar qualquer aspecto do 
+              FutZone a qualquer momento, sem aviso prévio.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">7. Limitação de Responsabilidade</h2>
+            <p className="leading-relaxed">
+              O FutZone é fornecido "como está", sem garantias de qualquer tipo. Não nos responsabilizamos 
+              por danos diretos, indiretos, incidentais ou consequenciais decorrentes do uso do serviço.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">8. Propriedade Intelectual</h2>
+            <p className="leading-relaxed">
+              O design, layout, código e conteúdo original do FutZone são protegidos por direitos autorais 
+              e outras leis de propriedade intelectual. Não é permitida a reprodução sem autorização.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">9. Lei Aplicável</h2>
+            <p className="leading-relaxed">
+              Este aviso legal é regido pelas leis brasileiras. Quaisquer disputas serão resolvidas 
+              nos tribunais competentes do Brasil.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-foreground mb-4">10. Contato</h2>
+            <p className="leading-relaxed">
+              Para questões legais ou reportar violações, entre em contato através do e-mail: 
+              legal@futzone.com
+            </p>
+          </section>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Legal;
