@@ -5,7 +5,7 @@ import path from "path";
 const repoName = "futzone-stream-hub";
 
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? `/${repoName}/` : "/",
+  base: `/${repoName}/`, // Muito importante para GitHub Pages
   plugins: [react()],
   resolve: {
     alias: {
