@@ -89,7 +89,7 @@ const Index = () => {
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-          <div>
+          <div className="text-center sm:text-left mx-auto sm:mx-0">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
               Assista Agora:
             </h1>
