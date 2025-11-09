@@ -1,48 +1,45 @@
-name: 🚀 Deploy automático do FutZone (limpo e otimizado)
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # Executa o deploy sempre que você fizer push na branch principal
+      - main  # 👈 Deploy sempre que fizer push na branch main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Baixa o código do repositório
-      - name: 📦 Checkout do repositório
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Configura o Node.js
-      - name: ⚙️ Instalar Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      # 3️⃣ Instala dependências
-      - name: 📥 Instalar dependências
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      # 4️⃣ Gera o build de produção (pasta dist)
-      - name: 🏗️ Gerar build
+      - name: Build project
         run: npm run build
 
-      # 5️⃣ Limpa branch gh-pages antiga antes do deploy
-      - name: 🧹 Limpar branch gh-pages antiga
-        run: |
-          git fetch origin gh-pages || true
-          git branch -D gh-pages || true
-          git push origin --delete gh-pages || true
-
-      # 6️⃣ Faz o deploy automático no GitHub Pages
-      - name: 🚀 Publicar no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          user_name: LERACHI
-          user_email: leandro@users.noreply.github.com
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
