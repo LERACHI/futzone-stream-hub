@@ -46,9 +46,9 @@ const About = () => {
             O <strong>FutZone</strong> é uma plataforma dedicada aos fãs de esportes que desejam
             acompanhar transmissões, notícias e conteúdos de alta qualidade sobre futebol, basquete,
             vôlei e muito mais. Nosso objetivo é unir praticidade, informação e entretenimento em um
-            só lugar. O FutZone funciona como um agregador de links e informações sobre jogos de futebol, trazendo acesso rápido a transmissões e conteúdos esportivos oficiais de diversas plataformas. Não hospedamos nem transmitimos jogos — todos os links direcionam para fontes legítimas e oficiais.
+            só lugar. O FutZone funciona como um agregador de links, trazendo acesso rápido a transmissões e conteúdos esportivos oficiais de diversas plataformas. Não hospedamos nem transmitimos jogos — todos os links direcionam para fontes legítimas e oficiais.
             Nosso objetivo é facilitar o acesso dos fãs de futebol a partidas, notícias e conteúdos em um só lugar, com transparência e respeito aos direitos autorais.
-            Se você é fã de futebol, aqui é o seu lugar.
+            Se você é fã de futebol e outros esportes, aqui é o seu lugar.
           </p>
         </ScrollRevealSection>
 
@@ -57,7 +57,7 @@ const About = () => {
           <p className="text-muted-foreground mb-6 leading-relaxed">
             Tornar o acesso ao conteúdo esportivo simples e acessível, conectando fãs aos melhores
             eventos e plataformas de streaming esportivo do mundo. Acreditamos que o esporte
-            une pessoas e queremos ser parte dessa conexão. Nossa missão é proporcionar uma experiência simples e eficiente para os amantes do futebol, conectando-os às melhores fontes oficiais de conteúdo esportivo. Valorizamos a integridade, a transparência e o respeito aos direitos autorais em todas as nossas operações.
+            une pessoas e queremos ser parte dessa conexão. Nossa missão é proporcionar uma experiência simples e eficiente para os amantes do futebol e demais esportes, conectando-os às melhores fontes oficiais de conteúdo esportivo. Valorizamos a integridade, a transparência e o respeito aos direitos autorais em todas as nossas operações.
 
 
           </p>
@@ -66,9 +66,10 @@ const About = () => {
         <ScrollRevealSection>
           <h2 className="text-4xl font-bold text-foreground mb-4">O  que Oferecemos:</h2>
           <p className="text-muted-foreground mb-6 leading-relaxed">
-            - Links atualizados para transmissões oficiais de jogos de futebol.
-            - Acesso rápido a notícias e análises esportivas.
-            - Uma plataforma fácil de navegar, focada na experiência do usuário.
+            Links atualizados para transmissões oficiais de jogos de futebol.
+            Acesso rápido a notícias e análises esportivas.
+            Uma plataforma fácil de navegar, focada na experiência do usuário.
+            
           </p>
         </ScrollRevealSection>
       
