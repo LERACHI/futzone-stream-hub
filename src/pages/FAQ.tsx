@@ -116,18 +116,7 @@ const FAQ = () => {
         </p>
 
         {/* Índice de Navegação */}
-        <nav className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
-          <h3 className="text-lg font-semibold text-foreground mb-4">Perguntas</h3>
-          <ul className="grid grid-cols-1 gap-2 text-sm">
-            {faqs.map((faq) => (
-              <li key={faq.id}>
-                <a href={`#${faq.id}`} className="text-accent hover:underline">
-                  {faq.question}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        
 
         <Accordion type="single" collapsible className="space-y-4">
           {faqs.map((faq, index) => (
