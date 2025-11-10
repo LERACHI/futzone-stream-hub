@@ -2,7 +2,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
+// Componente auxiliar de animação
 const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?: string }) => {
   const { ref, isVisible } = useScrollReveal();
   return (
@@ -18,7 +20,11 @@ const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?:
   );
 };
 
+// Página principal "Sobre Nós"
 const About = () => {
+  // 👇 Aqui é onde o scroll automático até o topo é ativado sempre que a rota muda
+  useScrollToTop();
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}

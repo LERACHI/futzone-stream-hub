@@ -16,7 +16,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 const ScrollRevealAccordion = ({ faq, index }: { faq: any; index: number }) => {
   const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
   return (
@@ -40,6 +40,7 @@ const ScrollRevealAccordion = ({ faq, index }: { faq: any; index: number }) => {
 };
 
 const FAQ = () => {
+   useScrollToTop(); 
   const faqs = [
     {
       id: "o-que-e-futzone",

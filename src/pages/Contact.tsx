@@ -16,6 +16,7 @@ import { Mail, MessageSquare, Send } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const ScrollRevealDiv = ({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) => {
   const { ref, isVisible } = useScrollReveal();
@@ -33,6 +34,7 @@ const ScrollRevealDiv = ({ children, delay = 0 }: { children: React.ReactNode; d
 };
 
 const Contact = () => {
+  useScrollToTop();  
   const [formData, setFormData] = useState({
     name: "",
     email: "",

@@ -10,7 +10,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
-
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?: string }) => {
   const { ref, isVisible } = useScrollReveal();
   return (
@@ -27,6 +27,7 @@ const ScrollRevealSection = ({ children, id }: { children: React.ReactNode; id?:
 };
 
 const Privacy = () => {
+  useScrollToTop();
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
