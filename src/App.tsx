@@ -38,6 +38,8 @@ const App = () => (
         <Route path="/noticias" element={<Index />} />
         <Route path="/videos" element={<Index />} />
         <Route path="/blog" element={<Index />} />
+        <Route path="/podcast" element={<Index />} />
+        <Route path="/streaming" element={<Index />} />
 
         {/* Catch-all */}
         <Route path="*" element={<NotFound />} />

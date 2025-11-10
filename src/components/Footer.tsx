@@ -25,16 +25,10 @@ const Footer = () => {
             Sobre Nós
           </Link>
           <Link
-            to="/contato"
+            to="/aviso-legal"
             className="text-muted-foreground hover:text-foreground text-sm transition-colors"
           >
-            Contato
-          </Link>
-          <Link
-            to="/faq"
-            className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-          >
-            FAQ
+            Aviso Legal
           </Link>
           <Link
             to="/privacidade"
@@ -43,10 +37,16 @@ const Footer = () => {
             Política de Privacidade
           </Link>
           <Link
-            to="/aviso-legal"
+            to="/faq"
             className="text-muted-foreground hover:text-foreground text-sm transition-colors"
           >
-            Aviso Legal
+            FAQ
+          </Link>
+          <Link
+            to="/contato"
+            className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+          >
+            Contato
           </Link>
         </nav>
 

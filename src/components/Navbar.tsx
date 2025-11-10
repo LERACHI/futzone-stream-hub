@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Calendar, Tv, Users, Table, TrendingUp, Newspaper, Video, BookOpen, Info, Search } from "lucide-react";
+import { Home, Calendar, Tv, Users, Table, TrendingUp, Newspaper, Video, BookOpen, Info, Search, LucidePodcast, Play } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
@@ -16,15 +16,15 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", path: "/", icon: Home },
-    { name: "Jogos de Hoje", path: "/jogos-hoje", icon: Calendar },
-    { name: "Streaming", path: "/", icon: Tv },
+    { name: "Jogos", path: "/jogos-hoje", icon: Calendar },
+    { name: "Streaming", path: "/streaming", icon: Play },
     { name: "Times", path: "/times", icon: Users },
     { name: "Tabelas", path: "/tabelas", icon: Table },
-    { name: "Mercado da Bola", path: "/mercado", icon: TrendingUp },
+    { name: "MDB", path: "/mercado", icon: TrendingUp },
     { name: "Notícias", path: "/noticias", icon: Newspaper },
     { name: "Vídeos", path: "/videos", icon: Video },
     { name: "Blog", path: "/blog", icon: BookOpen },
-    { name: "Sobre Nós", path: "/sobre", icon: Info },
+    { name: "+", path: "/podcast", icon: LucidePodcast },
   ];
 
   return (
