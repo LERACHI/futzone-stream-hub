@@ -133,7 +133,7 @@ const Privacy = () => {
             <h2 className="text-2xl font-bold text-foreground mb-4">9. Contato</h2>
             <p className="leading-relaxed">
               Para questões sobre privacidade ou para exercer seus direitos, entre em contato 
-              através do e-mail: privacidade@futzone.com
+              através de nosso canal de atendimento. clique <Link to="/contato" className="text-accent underline">aqui</Link>.
             </p>
           </ScrollRevealSection>
         </div>
