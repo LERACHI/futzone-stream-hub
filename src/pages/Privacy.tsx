@@ -52,59 +52,7 @@ const Privacy = () => {
         <h1 className="text-4xl font-bold text-foreground mb-4">Política de Privacidade</h1>
         <p className="text-muted-foreground mb-8">Última atualização: Janeiro de 2025</p>
 
-        {/* Índice de Navegação */}
-        <nav className="bg-muted/50 border border-border rounded-lg p-6 mb-8">
-          <h3 className="text-lg font-semibold text-foreground mb-4">Navegação Rápida</h3>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
-            <li>
-              <a href="#introducao" className="text-accent hover:underline">
-                1. Introdução
-              </a>
-            </li>
-            <li>
-              <a href="#informacoes-coletadas" className="text-accent hover:underline">
-                2. Informações que Coletamos
-              </a>
-            </li>
-            <li>
-              <a href="#uso-informacoes" className="text-accent hover:underline">
-                3. Como Usamos suas Informações
-              </a>
-            </li>
-            <li>
-              <a href="#compartilhamento" className="text-accent hover:underline">
-                4. Compartilhamento de Informações
-              </a>
-            </li>
-            <li>
-              <a href="#cookies" className="text-accent hover:underline">
-                5. Cookies
-              </a>
-            </li>
-            <li>
-              <a href="#seguranca" className="text-accent hover:underline">
-                6. Segurança
-              </a>
-            </li>
-            <li>
-              <a href="#direitos-lgpd" className="text-accent hover:underline">
-                7. Seus Direitos (LGPD)
-              </a>
-            </li>
-            <li>
-              <a href="#alteracoes" className="text-accent hover:underline">
-                8. Alterações nesta Política
-              </a>
-            </li>
-            <li>
-              <a href="#contato" className="text-accent hover:underline">
-                9. Contato
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="space-y-8 text-muted-foreground">
+                <div className="space-y-8 text-muted-foreground">
           <ScrollRevealSection id="introducao">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Introdução</h2>
             <p className="leading-relaxed">

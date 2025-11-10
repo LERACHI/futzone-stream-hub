@@ -49,6 +49,7 @@ const Legal = () => {
         </Breadcrumb>
       </div>
 
+      {/* Conteúdo principal */}
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="text-4xl font-bold text-foreground mb-4">Aviso Legal</h1>
         <p className="text-muted-foreground mb-8">Termos de Uso e Condições</p>
@@ -65,7 +66,7 @@ const Legal = () => {
           </div>
         </div>
 
-        {/* Conteúdo principal sem navegação rápida */}
+        {/* Texto do aviso legal */}
         <div className="space-y-8 text-muted-foreground">
           <ScrollRevealSection id="natureza-servico">
             <h2 className="text-2xl font-bold text-foreground mb-4">1. Natureza do Serviço</h2>
@@ -87,7 +88,6 @@ const Legal = () => {
 
           <ScrollRevealSection id="responsabilidades">
             <h2 className="text-2xl font-bold text-foreground mb-4">3. Responsabilidades</h2>
-            <p className="leading-relaxed mb-3">O FutZone não é responsável por:</p>
             <ul className="list-disc list-inside space-y-2">
               <li>Disponibilidade ou qualidade das transmissões em sites de terceiros</li>
               <li>Conteúdo exibido em plataformas externas</li>
@@ -98,7 +98,6 @@ const Legal = () => {
 
           <ScrollRevealSection id="uso-aceitavel">
             <h2 className="text-2xl font-bold text-foreground mb-4">4. Uso Aceitável</h2>
-            <p className="leading-relaxed mb-3">Ao utilizar o FutZone, você concorda em:</p>
             <ul className="list-disc list-inside space-y-2">
               <li>Usar o serviço apenas para fins legais</li>
               <li>Não tentar burlar sistemas de proteção ou restrições de acesso</li>
