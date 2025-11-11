@@ -1,7 +1,4 @@
 import { Link } from "react-router-dom";
-import { Tv } from "lucide-react";
-// ✅ Importando seu logo local
-import logo from "@/assets/imagens/meu-logo.svg";
 
 const Footer = () => {
   return (
@@ -10,13 +7,13 @@ const Footer = () => {
         {/* Logo e descrição */}
         <div className="mb-8">
           <Link to="/" className="inline-flex flex-col items-center space-y-3 mb-3">
-            {/* 🟢 Substituí o antigo ícone + texto pelo novo logo */}
+            {/* 🟢 Logo carregado da pasta public/imagens */}
             <img
-  src={logo}
-  alt="FutZone Logo"
-  className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
-  style={{ objectFit: "contain" }}
-/>
+              src="/imagens/meu-logo.svg"
+              alt="FutZone Logo"
+              className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
+              style={{ objectFit: "contain" }}
+            />
 
             <span className="text-2xl font-bold text-foreground">FutZone</span>
           </Link>
