@@ -8,7 +8,13 @@ interface ChannelCardProps {
   bgColor?: string;
 }
 
-const ChannelCard = ({ name, description, imageUrl, link, bgColor = "bg-card" }: ChannelCardProps) => {
+const ChannelCard = ({
+  name,
+  description,
+  imageUrl,
+  link,
+  bgColor = "bg-card",
+}: ChannelCardProps) => {
   const handleClick = () => {
     if (link) {
       window.open(link, "_blank", "noopener,noreferrer");
@@ -18,27 +24,30 @@ const ChannelCard = ({ name, description, imageUrl, link, bgColor = "bg-card" }:
   return (
     <div
       onClick={handleClick}
-      className={`channel-card ${bgColor} group relative transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] hover:brightness-110`}
+      className={`channel-card ${bgColor} relative group overflow-hidden rounded-xl cursor-pointer transition-all duration-300 hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]`}
     >
-      {/* Image Container */}
-      <div className="aspect-video flex items-center justify-center p-6 relative overflow-hidden">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
-        />
-        {link && (
-          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110">
-            <ExternalLink className="h-5 w-5 text-foreground drop-shadow-lg" />
-          </div>
-        )}
+      {/* Image fills entire card */}
+      <img
+        src={imageUrl}
+        alt={name}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-90 group-hover:brightness-100"
+      />
+
+      {/* Overlay gradient for readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+
+      {/* Content overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
+        <h3 className="font-bold text-lg mb-1">{name}</h3>
+        <p className="text-sm opacity-90">{description}</p>
       </div>
 
-      {/* Content */}
-      <div className="p-4 transition-all duration-300 group-hover:brightness-110">
-        <h3 className="font-bold text-lg text-foreground mb-1 transition-colors duration-300 group-hover:text-accent">{name}</h3>
-        <p className="text-sm text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">{description}</p>
-      </div>
+      {/* Link icon */}
+      {link && (
+        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 z-10">
+          <ExternalLink className="h-5 w-5 text-white drop-shadow-lg" />
+        </div>
+      )}
     </div>
   );
 };

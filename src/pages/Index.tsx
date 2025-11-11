@@ -12,72 +12,72 @@ const Index = () => {
   const channels = [
     {
       name: "ESPN",
-      description: "Casa do futebol brasileiro e internacional, da NBA, NFL, MLB e do tênis. Notícias exclusivas, blogs, vídeos, fotos e tempo real de eventos esportivos.",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg",
+      description: "Casa do futebol brasileiro e internacional, da NBA, NFL, MLB e do tênis.",
+      imageUrl: "/src/assets/imagens/espn.png",
       link: "https://www.espn.com.br",
       bgColor: "bg-red-600",
     },
     {
       name: "Canal SporTV",
-      description: "Assista agora ao melhor da programação esportiva · Na agenda: confira os horários dos eventos e dos programas do sportv · Programação. Agora no sportv. Confira ...",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5e/SporTV_2017_logo.svg",
+      description: "Programação esportiva completa com transmissões ao vivo e programas exclusivos.",
+      imageUrl: "/src/assets/imagens/sportv.png",
       link: "https://ge.globo.com/sportv/",
       bgColor: "bg-card",
     },
     {
       name: "Cazé TV",
       description: "Tudo sobre esporte DO NOSSO JEITO!",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/pt/2/22/Logotipo_da_Caz%C3%A9TV.png",
+      imageUrl: "/src/assets/imagens/cazetv.png",
       link: "https://www.youtube.com/@CazeTV",
       bgColor: "bg-card",
     },
     {
       name: "PREMIERE",
       description: "Bora de Black November Premiere!",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/20/Premiere_%282017%29_logo.png",
+      imageUrl: "/src/assets/imagens/premiere.png",
       link: "https://premiere.globo.com/agora",
       bgColor: "bg-green-700",
     },
     {
       name: "Fox Sports",
-      description: "Esportes americanos e futebol internacional",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e5/Fox_Sports_Netherlands_Logo.png",
+      description: "Esportes americanos e futebol internacional.",
+      imageUrl: "/src/assets/imagens/foxsports.png",
       link: "https://www.foxsports.com/",
       bgColor: "bg-blue-900",
     },
     {
       name: "DAZN",
-      description: "Transmissões esportivas sob demanda",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ae/DAZN_Tamarc_Logo_2018.jpg",
+      description: "Transmissões esportivas sob demanda.",
+      imageUrl: "/src/assets/imagens/dazn.png",
       link: "https://www.dazn.com",
       bgColor: "bg-card",
     },
     {
       name: "SBT SPORTS",
-      description: "No SBT Sports você fica por dentro dos principais campeonatos do país e do mundo, análises dos jogos e comentários do elenco esportivo do SBT.",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/pt/9/9e/Sbtsports.jpg",
+      description: "Fique por dentro dos principais campeonatos e análises do SBT Sports.",
+      imageUrl: "src/assets/imagens/sbtsports.png",
       link: "https://sports.sbt.com.br/",
       bgColor: "bg-green-600",
     },
     {
       name: "Band Sports",
-      description: "É o destino ideal para os amantes do esporte que desejam acompanhar eventos ao vivo e obter informações detalhadas sobre suas modalidades favoritas.",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f7/BandSports_logo.svg",
+      description: "O destino ideal para acompanhar seus esportes favoritos.",
+      imageUrl: "/src/assets/imagens/bandsports.png",
       link: "https://bandsports.uol.com.br/",
       bgColor: "bg-red-600",
     },
     {
       name: "Disney+",
-      description: "Premier League, o melhor do futebol mundial",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
+      description: "Premier League e o melhor do futebol mundial.",
+      imageUrl: "/src/assets/imagens/disneyplus.png",
       link: "https://www.disneyplus.com",
       bgColor: "bg-blue-600",
     },
     {
-      name: "YouTube",
-      description: "Welcome to the official YouTube channel of the Brazilian Football Confederation! ",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/99/Brazilian_Football_Confederation_logo.svg",
-      link: "https://www.youtube.com/channel/UCdQuDaRww5NkKpQQ1BJBWww#:~:text=Confedera%C3%A7%C3%A3o%20Brasileira%20de%20Futebol%20%2D%20YouTube",
+      name: "YouTube CBF",
+      description: "Canal oficial da Confederação Brasileira de Futebol.",
+      imageUrl: "/src/assets/imagens/bryoutube.png",
+      link: "https://www.youtube.com/channel/UCdQuDaRww5NkKpQQ1BJBWww",
       bgColor: "bg-red-600",
     },
   ];
@@ -85,7 +85,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
+
       <main className="flex-1 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -97,7 +97,7 @@ const Index = () => {
               Acesse os melhores canais esportivos e plataformas de streaming
             </p>
           </div>
-          
+
           {/* View Toggle */}
           <div className="flex gap-2 bg-muted/50 p-1 rounded-lg">
             <Button
@@ -125,19 +125,29 @@ const Index = () => {
         {viewMode === "grid" && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 animate-fade-in">
             {channels.map((channel) => (
-              <ChannelCard
-                key={channel.name}
-                name={channel.name}
-                description={channel.description}
-                imageUrl={channel.imageUrl}
-                link={channel.link}
-                bgColor={channel.bgColor}
-              />
+              <div key={channel.name} className="aspect-video rounded-xl overflow-hidden relative group cursor-pointer">
+                <img
+                  src={channel.imageUrl}
+                  alt={channel.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:brightness-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-90"></div>
+                <div className="absolute bottom-0 left-0 p-4 text-white z-10">
+                  <h3 className="font-bold text-lg group-hover:text-accent transition-colors">{channel.name}</h3>
+                  <p className="text-sm opacity-90">{channel.description}</p>
+                </div>
+                <a
+                  href={channel.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-20"
+                />
+              </div>
             ))}
           </div>
         )}
 
-        {/* Channels List View */}
+        {/* Channels List View (mantido como antes) */}
         {viewMode === "list" && (
           <div className="space-y-4 mb-8 animate-fade-in">
             {channels.map((channel) => (
@@ -167,28 +177,12 @@ const Index = () => {
                       {channel.description}
                     </p>
                   </div>
-                  <div className="text-muted-foreground group-hover:text-primary transition-colors">
-                    <svg
-                      className="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </a>
             ))}
           </div>
         )}
 
-        {/* Disclaimer */}
         <Disclaimer />
       </main>
 
