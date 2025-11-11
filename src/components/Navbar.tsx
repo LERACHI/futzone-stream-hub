@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/carousel";
 
 // ✅ Importando seu logo local (verifique se o arquivo existe neste caminho)
-import logo from "@/assets/imagens/meu-logo.svg";
+import logo from "/imagens/meu-logo.svg";
 
 const Navbar = () => {
   const location = useLocation();
