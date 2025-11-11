@@ -22,6 +22,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+// ✅ Importando seu logo local (verifique se o arquivo existe neste caminho)
+import logo from "@/assets/imagens/meu-logo.svg";
+
 const Navbar = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,18 +46,19 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-6 h-16">
-          {/* ✅ Logo personalizado (carregado da pasta public/imagens) */}
+          {/* ✅ Logo personalizado */}
           <Link to="/" className="flex items-center space-x-3">
-            <img
-              src="/imagens/meu-logo.svg"
-              alt="FutZone Logo"
-              className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
-              style={{ objectFit: "contain" }}
-            />
-            <span className="text-base font-bold text-foreground hidden sm:inline">
-              FutZone
-            </span>
-          </Link>
+  <img
+    src={logo}
+    alt="FutZone Logo"
+    className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
+    style={{ objectFit: "contain" }}
+  />
+  <span className="text-base font-bold text-foreground hidden sm:inline">
+    FutZone
+  </span>
+</Link>
+
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2">
