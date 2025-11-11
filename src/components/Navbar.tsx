@@ -49,7 +49,7 @@ const Navbar = () => {
           {/* ✅ Logo personalizado */}
           <Link to="/" className="flex items-center space-x-3">
   <img
-    src={logo}
+    src="/futzone-stream-hub/imagens/meu-logo.svg"
     alt="FutZone Logo"
     className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
     style={{ objectFit: "contain" }}

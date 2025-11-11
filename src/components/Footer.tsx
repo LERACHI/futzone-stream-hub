@@ -12,7 +12,7 @@ const Footer = () => {
           <Link to="/" className="inline-flex flex-col items-center space-y-3 mb-3">
             {/* 🟢 Substituí o antigo ícone + texto pelo novo logo */}
             <img
-  src={logo}
+  src="/futzone-stream-hub/imagens/meu-logo.svg"
   alt="FutZone Logo"
   className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
   style={{ objectFit: "contain" }}
