@@ -9,78 +9,79 @@ import { Button } from "@/components/ui/button";
 const Index = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  const channels = [
+ const channels = [
   {
     name: "ESPN",
     description: "Casa do futebol brasileiro e internacional, da NBA, NFL, MLB e do tênis.",
-    imageUrl: "/futzone-stream-hub/imagens/espn.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/espn.png`,
     link: "https://www.espn.com.br",
     bgColor: "bg-red-600",
   },
   {
     name: "Canal SporTV",
     description: "Programação esportiva completa com transmissões ao vivo e programas exclusivos.",
-    imageUrl: "/futzone-stream-hub/imagens/sportv.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/sportv.png`,
     link: "https://ge.globo.com/sportv/",
     bgColor: "bg-card",
   },
   {
     name: "Cazé TV",
     description: "Tudo sobre esporte DO NOSSO JEITO!",
-    imageUrl: "/futzone-stream-hub/imagens/cazetv.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/cazetv.png`,
     link: "https://www.youtube.com/@CazeTV",
     bgColor: "bg-card",
   },
   {
     name: "PREMIERE",
     description: "Bora de Black November Premiere!",
-    imageUrl: "/futzone-stream-hub/imagens/premiere.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/premiere.png`,
     link: "https://premiere.globo.com/agora",
     bgColor: "bg-green-700",
   },
   {
     name: "Fox Sports",
     description: "Esportes americanos e futebol internacional.",
-    imageUrl: "/futzone-stream-hub/imagens/foxsports.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/foxsports.png`,
     link: "https://www.foxsports.com/",
     bgColor: "bg-blue-900",
   },
   {
     name: "DAZN",
     description: "Transmissões esportivas sob demanda.",
-    imageUrl: "/futzone-stream-hub/imagens/dazn.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/dazn.png`,
     link: "https://www.dazn.com",
     bgColor: "bg-card",
   },
   {
     name: "SBT SPORTS",
     description: "Fique por dentro dos principais campeonatos e análises do SBT Sports.",
-    imageUrl: "/futzone-stream-hub/imagens/sbtsports.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/sbtsports.png`,
     link: "https://sports.sbt.com.br/",
     bgColor: "bg-green-600",
   },
   {
     name: "Band Sports",
     description: "O destino ideal para acompanhar seus esportes favoritos.",
-    imageUrl: "/futzone-stream-hub/imagens/bandsports.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/bandsports.png`,
     link: "https://bandsports.uol.com.br/",
     bgColor: "bg-red-600",
   },
   {
     name: "Disney+",
     description: "Premier League e o melhor do futebol mundial.",
-    imageUrl: "/futzone-stream-hub/imagens/disneyplus.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/disneyplus.png`,
     link: "https://www.disneyplus.com",
     bgColor: "bg-blue-600",
   },
   {
     name: "YouTube CBF",
     description: "Canal oficial da Confederação Brasileira de Futebol.",
-    imageUrl: "/futzone-stream-hub/imagens/bryoutube.png",
+    imageUrl: `${import.meta.env.BASE_URL}imagens/bryoutube.png`,
     link: "https://www.youtube.com/channel/UCdQuDaRww5NkKpQQ1BJBWww",
     bgColor: "bg-red-600",
   },
 ];
+
 
 
   return (
