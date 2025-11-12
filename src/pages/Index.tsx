@@ -15,7 +15,7 @@ const Index = () => {
     description: "Casa do futebol brasileiro e internacional, da NBA, NFL, MLB e do tênis.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/espn.png`,
     link: "https://www.espn.com.br",
-    bgColor: "bg-red-600",
+    bgColor: "bg-card",
   },
   {
     name: "Canal SporTV",
@@ -36,14 +36,14 @@ const Index = () => {
     description: "Bora de Black November Premiere!",
     imageUrl: `${import.meta.env.BASE_URL}imagens/premiere.png`,
     link: "https://premiere.globo.com/agora",
-    bgColor: "bg-green-700",
+    bgColor: "bg-card",
   },
   {
     name: "Fox Sports",
     description: "Esportes americanos e futebol internacional.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/foxsports.png`,
     link: "https://www.foxsports.com/",
-    bgColor: "bg-blue-900",
+    bgColor: "bg-card",
   },
   {
     name: "DAZN",
@@ -57,28 +57,28 @@ const Index = () => {
     description: "Fique por dentro dos principais campeonatos e análises do SBT Sports.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/sbtsports.png`,
     link: "https://sports.sbt.com.br/",
-    bgColor: "bg-green-600",
+    bgColor: "bg-card",
   },
   {
     name: "Band Sports",
     description: "O destino ideal para acompanhar seus esportes favoritos.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/bandsports.png`,
     link: "https://bandsports.uol.com.br/",
-    bgColor: "bg-red-600",
+    bgColor: "bg-card",
   },
   {
     name: "Disney+",
     description: "Premier League e o melhor do futebol mundial.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/disneyplus.png`,
     link: "https://www.disneyplus.com",
-    bgColor: "bg-blue-600",
+    bgColor: "bg-card",
   },
   {
     name: "YouTube CBF",
     description: "Canal oficial da Confederação Brasileira de Futebol.",
     imageUrl: `${import.meta.env.BASE_URL}imagens/bryoutube.png`,
     link: "https://www.youtube.com/channel/UCdQuDaRww5NkKpQQ1BJBWww",
-    bgColor: "bg-red-600",
+    bgColor: "bg-card",
   },
 ];
 
