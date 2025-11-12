@@ -1,6 +1,7 @@
 // src/components/MatchCard.tsx
 import { motion } from "framer-motion";
 import { Team, Match } from "@/pages/jogos";
+import { getImagePath } from "@/utils/getImagePath"; // import do helper
 
 interface MatchCardProps {
   match: Match;
@@ -72,8 +73,8 @@ const MatchCard = ({ match, future = false }: MatchCardProps) => {
 const TeamDisplay = ({ team }: { team: Team }) => (
   <div className="flex flex-col items-center w-36 text-center">
     <motion.img
-      // team.logo_url deve conter apenas o nome do arquivo (ex: "atletico-madrid.png")
-      src={team.logo_url.startsWith("http") ? team.logo_url : `/imagens/${team.logo_url}`}
+      // usa o helper para construir caminho correto
+      src={team.logo_url.startsWith("http") ? team.logo_url : getImagePath(team.logo_url)}
       alt={team.name}
       className="w-20 h-20 md:w-24 md:h-24 object-contain mb-2 drop-shadow-2xl"
       whileHover={{ scale: 1.15 }}

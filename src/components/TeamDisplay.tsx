@@ -1,20 +1,21 @@
 // src/components/TeamDisplay.tsx
 import { motion } from "framer-motion";
 import { Team } from "@/pages/jogos";
+import { getImagePath } from "@/utils/getImagePath";
 
 interface TeamDisplayProps {
   team: Team;
 }
 
 const TeamDisplay = ({ team }: TeamDisplayProps) => {
-  // Caminho padrão do logo
+  // Caminho do logo usando o helper
   const logoPath = team.logo_url.startsWith("http")
     ? team.logo_url
-    : `/imagens/${team.logo_url}`;
+    : getImagePath(team.logo_url);
 
   // fallback caso o logo não exista
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = "/imagens/default.png";
+    e.currentTarget.src = getImagePath("default.png"); // fallback
   };
 
   return (
@@ -24,7 +25,7 @@ const TeamDisplay = ({ team }: TeamDisplayProps) => {
         alt={team.name}
         className="w-20 h-20 md:w-24 md:h-24 object-contain mb-2 drop-shadow-2xl"
         whileHover={{ scale: 1.15 }}
-        onError={handleError} // ← substitui por default.png se falhar
+        onError={handleError} // fallback automático
       />
       <span className="text-sm md:text-base font-semibold text-zinc-200 drop-shadow-sm">
         {team.name}
