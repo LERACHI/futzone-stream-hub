@@ -15,7 +15,7 @@ const TeamDisplay = ({ team }: TeamDisplayProps) => {
 
   // fallback caso o logo não exista
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = getImagePath("default.png"); // fallback
+    e.currentTarget.src = getImagePath("default.png"); // fallback automático
   };
 
   return (
