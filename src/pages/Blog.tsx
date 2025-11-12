@@ -1,8 +1,9 @@
-import React from "react";
+// src/pages/Blog.tsx
+import PagePlaceholder from "@/components/PagePlaceholder";
+import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 
-const Jogos = () => {
-  return <div>Página de Jogos</div>;
+const Blog = () => {
+  return <PagePlaceholder title="Blog" />;
 };
 
-export default Jogos;
-
+export default Blog;

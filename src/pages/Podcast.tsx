@@ -1,8 +1,9 @@
-import React from "react";
+// src/pages/Podcast.tsx
+import PagePlaceholder from "@/components/PagePlaceholder";
+import { s } from "node_modules/vite/dist/node/types.d-aGj9QkWt";
 
-const Jogos = () => {
-  return <div>Página de Jogos</div>;
+const Podcast = () => {
+  return <PagePlaceholder title="Podcast" />;
 };
 
-export default Jogos;
-
+export default Podcast;
