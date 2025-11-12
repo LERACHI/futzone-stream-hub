@@ -38,7 +38,6 @@ const Jogos = () => {
         getMatchesFuture(selectedLeague.id),
       ]);
 
-      // 🔹 Aplicando o mapeamento para os logos
       setTodayMatches(fixTeamLogos(today));
       setFutureMatches(fixTeamLogos(future));
       setLoading(false);
@@ -59,34 +58,30 @@ const Jogos = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-950 to-black text-white px-6 py-12">
-      {/* 🎯 TÍTULO PRINCIPAL */}
+      {/* 🎯 HEADER */}
       <motion.div
-        className="relative text-center mb-12 select-none"
+        className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 text-center md:text-left mb-12 select-none"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <div className="flex items-center justify-center gap-4 text-5xl font-extrabold bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,255,100,0.6)]">
-          <motion.img
-            src="/imagens/meu-logo.svg"
-            alt="FutZone Logo"
-            className="w-14 h-14 object-contain"
-            initial={{ rotate: -20, scale: 0.8, opacity: 0 }}
-            animate={{ rotate: 0, scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            whileHover={{ scale: 1.1, rotate: 10 }}
-          />
-          <motion.span
-            className="relative"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-          >
-            Partidas em Destaque
-          </motion.span>
-        </div>
-
-        <div className="absolute left-1/2 top-full w-[300px] h-[60px] -translate-x-1/2 bg-gradient-to-b from-emerald-300/30 to-transparent blur-xl opacity-40" />
+        <motion.img
+          src="/imagens/meu-logo.svg"
+          alt="FutZone Logo"
+          className="w-10 h-10 md:w-14 md:h-14 object-contain"
+          initial={{ rotate: -20, scale: 0.8, opacity: 0 }}
+          animate={{ rotate: 0, scale: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          whileHover={{ scale: 1.1, rotate: 10 }}
+        />
+        <motion.span
+          className="text-3xl md:text-5xl font-extrabold bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,255,100,0.6)]"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8 }}
+        >
+          Partidas em Destaque
+        </motion.span>
       </motion.div>
 
       {/* 🏆 SELETOR DE LIGAS */}
