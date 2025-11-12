@@ -5,14 +5,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Routes, Route } from "react-router-dom";
 
-import Index from "./pages/Index";
-import About from "./pages/About";
-import FAQ from "./pages/FAQ";
-import Contact from "./pages/Contact";
-import Privacy from "./pages/Privacy";
-import Legal from "./pages/Legal";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import NotFound from "./pages/NotFound";
-import ScrollToTopButton from "./components/ScrollToTopButton";
+
+// ✅ Importando todas as rotas centralizadas
+import { routes } from "@/routes";
+import { footerRoutes } from "./routes";
 
 const queryClient = new QueryClient();
 
@@ -21,30 +21,27 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <Routes>
-        {/* Rotas principais */}
-        <Route path="/" element={<Index />} />
-        <Route path="/sobre" element={<About />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/contato" element={<Contact />} />
-        <Route path="/privacidade" element={<Privacy />} />
-        <Route path="/aviso-legal" element={<Legal />} />
 
-        {/* Rotas placeholder */}
-        <Route path="/jogos-hoje" element={<Index />} />
-        <Route path="/times" element={<Index />} />
-        <Route path="/tabelas" element={<Index />} />
-        <Route path="/mercado" element={<Index />} />
-        <Route path="/noticias" element={<Index />} />
-        <Route path="/videos" element={<Index />} />
-        <Route path="/blog" element={<Index />} />
-        <Route path="/podcast" element={<Index />} />
-        <Route path="/streaming" element={<Index />} />
+      {/* Navbar fixo para todas as páginas */}
+      <Navbar />
 
-        {/* Catch-all */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {/* Conteúdo principal */}
+      <main className="flex-1">
+        <Routes>
+  {routes.map((r) => (
+    <Route key={r.path} path={r.path} element={<r.component />} />
+  ))}
+  {footerRoutes.map((r) => (
+    <Route key={r.path} path={r.path} element={<r.component />} />
+  ))}
+  <Route path="*" element={<NotFound />} />
+</Routes>
+      </main>
 
+      {/* Footer fixo para todas as páginas */}
+      <Footer />
+
+      {/* Botão de scroll */}
       <ScrollToTopButton />
     </TooltipProvider>
   </QueryClientProvider>

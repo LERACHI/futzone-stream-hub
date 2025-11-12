@@ -91,7 +91,6 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 pt-4">
@@ -126,7 +125,6 @@ const FAQ = () => {
         </Accordion>
       </main>
 
-      <Footer />
     </div>
   );
 };

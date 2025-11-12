@@ -50,7 +50,6 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 pt-4">
@@ -178,8 +177,7 @@ const Contact = () => {
               <div className="bg-muted border border-border rounded-lg p-6">
                 <h3 className="font-semibold text-foreground mb-3">Tempo de Resposta</h3>
                 <p className="text-sm text-muted-foreground">
-                  Normalmente respondemos em até 24 horas úteis. Para questões urgentes, 
-                  utilize o e-mail de suporte.
+                  Normalmente respondemos em até 24 horas úteis. Utilize nosso formulário de suporte ao lado para questões técnicas ou dúvidas sobre o FutZone. Obrigado pela sua compreensão!
                 </p>
               </div>
             </ScrollRevealDiv>
@@ -187,7 +185,6 @@ const Contact = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };

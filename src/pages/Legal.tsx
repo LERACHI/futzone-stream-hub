@@ -31,7 +31,6 @@ const Legal = () => {
   useScrollToTop();  
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
 
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 pt-4">
@@ -157,7 +156,6 @@ const Legal = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };

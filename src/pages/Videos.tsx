@@ -1,0 +1,8 @@
+import React from "react";
+
+const Jogos = () => {
+  return <div>Página de Jogos</div>;
+};
+
+export default Jogos;
+

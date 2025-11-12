@@ -30,7 +30,6 @@ const Privacy = () => {
   useScrollToTop();
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
       
       {/* Breadcrumb */}
       <div className="container mx-auto px-4 pt-4">
@@ -51,7 +50,7 @@ const Privacy = () => {
 
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         <h1 className="text-4xl font-bold text-foreground mb-4">Política de Privacidade</h1>
-        <p className="text-muted-foreground mb-8">Última atualização: Janeiro de 2025</p>
+        <p className="text-muted-foreground mb-8">Última atualização: Novembro de 2025</p>
 
                 <div className="space-y-8 text-muted-foreground">
           <ScrollRevealSection id="introducao">
@@ -139,7 +138,6 @@ const Privacy = () => {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 };

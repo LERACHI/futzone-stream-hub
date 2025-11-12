@@ -22,47 +22,36 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-// ✅ Importando seu logo local (verifique se o arquivo existe neste caminho)
+// ✅ Importando seu logo local
 import logo from "@/assets/imagens/meu-logo.svg";
+
+// ✅ Importando as rotas centralizadas
+import { routes } from "@/routes";
 
 const Navbar = () => {
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const navItems = [
-    { name: "Home", path: "/", icon: Home },
-    { name: "Jogos", path: "/jogos-hoje", icon: Calendar },
-    { name: "Streaming", path: "/streaming", icon: Play },
-    { name: "Times", path: "/times", icon: Users },
-    { name: "Tabelas", path: "/tabelas", icon: Table },
-    { name: "MDB", path: "/mercado", icon: TrendingUp },
-    { name: "Notícias", path: "/noticias", icon: Newspaper },
-    { name: "Vídeos", path: "/videos", icon: Video },
-    { name: "Blog", path: "/blog", icon: BookOpen },
-    { name: "+", path: "/podcast", icon: LucidePodcast },
-  ];
-
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-center gap-6 h-16">
-          {/* ✅ Logo personalizado */}
+          {/* Logo personalizado */}
           <Link to="/" className="flex items-center space-x-3">
-  <img
-    src={`${import.meta.env.BASE_URL}imagens/meu-logo.svg`}
-    alt="FutZone Logo"
-    className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
-    style={{ objectFit: "contain" }}
-  />
-  <span className="text-base font-bold text-foreground hidden sm:inline">
-    FutZone
-  </span>
-</Link>
-
+            <img
+              src={`${import.meta.env.BASE_URL}imagens/meu-logo.svg`}
+              alt="FutZone Logo"
+              className="h-10 md:h-12 lg:h-14 w-auto rounded-lg shadow-md transition-all duration-300"
+              style={{ objectFit: "contain" }}
+            />
+            <span className="text-base font-bold text-foreground hidden sm:inline">
+              FutZone
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-2">
-            {navItems.map((item) => {
+            {routes.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
               return (
@@ -103,7 +92,7 @@ const Navbar = () => {
             className="w-full"
           >
             <CarouselContent className="-ml-2">
-              {navItems.map((item) => {
+              {routes.map((item) => {
                 const Icon = item.icon;
                 const isActive = location.pathname === item.path;
                 return (
