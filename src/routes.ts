@@ -24,7 +24,7 @@ export interface RouteItem {
 
 export const routes: RouteItem[] = [
   { name: "Home", path: "/", icon: Home, component: HomePage },
-  { name: "Jogos", path: "/jogos-hoje", icon: Calendar, component: JogosPage },
+  { name: "Jogos", path: "/jogos", icon: Calendar, component: JogosPage },
   { name: "Streaming", path: "/streaming", icon: Play, component: StreamingPage },
   { name: "Times", path: "/times", icon: Users, component: TimesPage },
   { name: "Tabelas", path: "/tabelas", icon: Table, component: TabelasPage },
