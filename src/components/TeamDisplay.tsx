@@ -7,12 +7,32 @@ interface TeamDisplayProps {
   team: Team;
 }
 
+// Mapeamento dos nomes dos times para os arquivos corretos na pasta /public/imagens
+const teamLogos: Record<string, string> = {
+  "Bayern Munique": "bayern-munich.png",
+  "Bayern Munich": "bayern-munich.png",
+  "Real Madrid": "real-madrid.png",
+  "Union St.-Gilloise": "union-st-gilloise.png",
+  "Eintracht Frankfurt": "eintracht-frankfurt.png",
+  "Atlético Madrid": "atletico-madrid.png",
+  "Atlético de Madrid": "atletico-madrid.png",
+  "Paris Saint-Germain": "paris-saint-germain.png",
+  "Sporting CP": "sporting-cp.png",
+  "Flamengo": "flamengo.png",
+  "Sao Paulo": "sao-paulo.png",
+  "Chapecoense": "chapeco.png",
+  "Juventus": "juventus.png",
+  "Liverpool": "liverpool.png",
+  "Napoli": "napoli.png",
+  "Bahia": "bahia.png",
+  "Atlético-PR": "atletico-pr.png",
+  // Adicione mais times se necessário
+};
+
 const TeamDisplay = ({ team }: TeamDisplayProps) => {
-  // Define o caminho do logo usando o helper
-  const logoPath =
-    team.logo_url && team.logo_url.startsWith("http")
-      ? team.logo_url
-      : getImagePath(team.logo_url || "default.png");
+  // Define o caminho da imagem usando o mapeamento
+  const logoFileName = teamLogos[team.name] || team.logo_url || "default.png";
+  const logoPath = team.logo_url.startsWith("http") ? team.logo_url : getImagePath(logoFileName);
 
   // Fallback caso a imagem não carregue
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -26,7 +46,7 @@ const TeamDisplay = ({ team }: TeamDisplayProps) => {
         alt={team.name || "Time"}
         className="w-20 h-20 md:w-24 md:h-24 object-contain mb-2 drop-shadow-2xl"
         whileHover={{ scale: 1.15 }}
-        onError={handleError}
+        onError={handleError} // fallback automático
       />
       <span className="text-sm md:text-base font-semibold text-zinc-200 drop-shadow-sm">
         {team.name || "Time"}
