@@ -3,48 +3,46 @@ import { useEffect, useState } from "react";
 import { getMatchesToday, getMatchesFuture, LEAGUES } from "@/services/matches";
 import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
-import MatchCard from "@/components/MatchCard";
-
-export interface Team {
-  name: string;
-  logo_url: string;
-  score: number;
-}
-
-export interface Match {
-  id: string;
-  time: string;
-  status: string;
-  home_team: Team;
-  away_team: Team;
-}
+import TeamDisplay from "@/components/TeamDisplay";
+import { Match as MatchType } from "@/pages/jogos";
 
 const Jogos = () => {
   const [selectedLeague, setSelectedLeague] = useState(LEAGUES.BRASILEIRAO);
-  const [todayMatches, setTodayMatches] = useState<Match[]>([]);
-  const [futureMatches, setFutureMatches] = useState<Match[]>([]);
+  const [todayMatches, setTodayMatches] = useState<MatchType[]>([]);
+  const [futureMatches, setFutureMatches] = useState<MatchType[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // 🔹 Função para ajustar os logos dos times
+  const fixTeamLogos = (matches: MatchType[]): MatchType[] => {
+    return matches.map((match) => ({
+      ...match,
+      home_team: {
+        ...match.home_team,
+        logo_url: match.home_team.logo_url.split("/").pop() || "default.png",
+      },
+      away_team: {
+        ...match.away_team,
+        logo_url: match.away_team.logo_url.split("/").pop() || "default.png",
+      },
+    }));
+  };
 
   useEffect(() => {
     async function fetchMatches() {
       setLoading(true);
-
-      // 🔹 Limpar dados antigos para evitar repetição
       setTodayMatches([]);
       setFutureMatches([]);
-
-      console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.id);
 
       const [today, future] = await Promise.all([
         getMatchesToday(selectedLeague.id),
         getMatchesFuture(selectedLeague.id),
       ]);
 
-      setTodayMatches(today);
-      setFutureMatches(future);
+      // 🔹 Aplicando o mapeamento para os logos
+      setTodayMatches(fixTeamLogos(today));
+      setFutureMatches(fixTeamLogos(future));
       setLoading(false);
     }
-
     fetchMatches();
   }, [selectedLeague]);
 
@@ -111,7 +109,6 @@ const Jogos = () => {
 
       {/* 🧱 GRID DE JOGOS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
-
         {/* Jogos de Hoje */}
         <div className="space-y-6">
           <motion.div
@@ -129,7 +126,32 @@ const Jogos = () => {
           {todayMatches.length === 0 ? (
             <p className="text-zinc-400">Nenhuma partida encontrada.</p>
           ) : (
-            todayMatches.map((match) => <MatchCard key={match.id} match={match} />)
+            todayMatches.map((match) => (
+              <motion.div
+                key={match.id}
+                className="bg-zinc-800/60 backdrop-blur-xl rounded-2xl p-4 border border-zinc-700 shadow-md transition-all"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm text-zinc-400">
+                    {match.status === "FINALIZADO"
+                      ? "Encerrado"
+                      : match.status === "AO_VIVO"
+                      ? "Ao vivo 🔴"
+                      : "Pré-jogo"}
+                  </span>
+                  <span className="text-sm text-zinc-400">{match.time}</span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <TeamDisplay team={match.home_team} />
+                  <span className="text-2xl font-bold text-zinc-100">
+                    {match.home_team.score} - {match.away_team.score}
+                  </span>
+                  <TeamDisplay team={match.away_team} />
+                </div>
+              </motion.div>
+            ))
           )}
         </div>
 
@@ -150,7 +172,31 @@ const Jogos = () => {
           {futureMatches.length === 0 ? (
             <p className="text-zinc-400">Nenhum jogo futuro encontrado.</p>
           ) : (
-            futureMatches.map((match) => <MatchCard key={match.id} match={match} future />)
+            futureMatches.map((match) => (
+              <motion.div
+                key={match.id}
+                className="bg-zinc-800/60 backdrop-blur-xl rounded-2xl p-4 border border-zinc-700 shadow-md transition-all"
+                whileHover={{ scale: 1.02 }}
+              >
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm text-zinc-400">Agendado</span>
+                  <span className="text-sm text-zinc-400">
+                    {new Date(match.time).toLocaleDateString("pt-BR", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <TeamDisplay team={match.home_team} />
+                  <span className="text-xl font-semibold text-zinc-100">vs</span>
+                  <TeamDisplay team={match.away_team} />
+                </div>
+              </motion.div>
+            ))
           )}
         </div>
       </div>

@@ -7,20 +7,28 @@ interface TeamDisplayProps {
 }
 
 const TeamDisplay = ({ team }: TeamDisplayProps) => {
-  // Se team.logo_url começar com "http", usa direto, senão procura em /imagens/
-  const logoSrc = team.logo_url.startsWith("http")
+  // Caminho padrão do logo
+  const logoPath = team.logo_url.startsWith("http")
     ? team.logo_url
     : `/imagens/${team.logo_url}`;
 
+  // fallback caso o logo não exista
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = "/imagens/default.png";
+  };
+
   return (
-    <div className="flex flex-col items-center w-32 text-center">
+    <div className="flex flex-col items-center w-36 text-center">
       <motion.img
-        src={logoSrc}
+        src={logoPath}
         alt={team.name}
         className="w-20 h-20 md:w-24 md:h-24 object-contain mb-2 drop-shadow-2xl"
         whileHover={{ scale: 1.15 }}
+        onError={handleError} // ← substitui por default.png se falhar
       />
-      <span className="text-sm font-medium text-zinc-200">{team.name}</span>
+      <span className="text-sm md:text-base font-semibold text-zinc-200 drop-shadow-sm">
+        {team.name}
+      </span>
     </div>
   );
 };
