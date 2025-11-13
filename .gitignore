@@ -1,5 +1,9 @@
+# ===============================
+# 🌿 Git Ignore para Vite + React + GitHub Pages
+# ===============================
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +11,34 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Builds e dependências
+node_modules/
+dist/
+dist-ssr/
+.vite/
+.vercel/
+.next/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Arquivos de ambiente (NUNCA subir para o GitHub)
+.env
+.env.local
+.env.development
+.env.production
+
+# Caches e temporários
+.eslintcache
 .DS_Store
+Thumbs.db
+
+# Configurações de editores
+.vscode/
+!.vscode/extensions.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Outros
+*.local

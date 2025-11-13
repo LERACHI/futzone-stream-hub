@@ -1,104 +1,162 @@
 // src/pages/jogos.tsx
 import { useEffect, useState } from "react";
-import { getMatchesToday, getMatchesFuture, LEAGUES } from "@/services/matches";
-import { Loader2 } from "lucide-react";
+import { getMatchesByLeague, LEAGUES } from "@/services/matches";
+import { Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import TeamDisplay from "@/components/TeamDisplay";
-import { Match as MatchType } from "@/pages/jogos";
+
+export interface MatchType {
+  id: number;
+  time: string;
+  status: string;
+  home_team: { name: string; logo_url: string; score: number };
+  away_team: { name: string; logo_url: string; score: number };
+}
+
+const fakeMatches: Record<number, MatchType[]> = {
+  [LEAGUES.BRASILEIRAO.id]: [
+    {
+      id: 1,
+      time: "19:00",
+      status: "PRE_JOGO",
+      home_team: { name: "Flamengo", logo_url: "/imagens/times/flamengo.png", score: 0 },
+      away_team: { name: "Palmeiras", logo_url: "/imagens/times/palmeiras.png", score: 0 },
+    },
+    {
+      id: 2,
+      time: "21:30",
+      status: "PRE_JOGO",
+      home_team: { name: "Corinthians", logo_url: "/imagens/times/corinthians.png", score: 0 },
+      away_team: { name: "São Paulo", logo_url: "/imagens/times/saopaulo.png", score: 0 },
+    },
+  ],
+  [LEAGUES.LIBERTADORES.id]: [
+    {
+      id: 3,
+      time: "22:00",
+      status: "AO_VIVO",
+      home_team: { name: "River Plate", logo_url: "/imagens/times/river.png", score: 2 },
+      away_team: { name: "Boca Juniors", logo_url: "/imagens/times/boca.png", score: 1 },
+    },
+  ],
+};
 
 const Jogos = () => {
   const [selectedLeague, setSelectedLeague] = useState(LEAGUES.BRASILEIRAO);
-  const [todayMatches, setTodayMatches] = useState<MatchType[]>([]);
-  const [futureMatches, setFutureMatches] = useState<MatchType[]>([]);
+  const [matches, setMatches] = useState<MatchType[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isDemo, setIsDemo] = useState(false);
+  const [showDemoNotice, setShowDemoNotice] = useState(false);
 
-  // 🔹 Função para ajustar os logos dos times
   const fixTeamLogos = (matches: MatchType[]): MatchType[] => {
     return matches.map((match) => ({
       ...match,
-      home_team: {
-        ...match.home_team,
-        logo_url: match.home_team.logo_url.split("/").pop() || "default.png",
-      },
-      away_team: {
-        ...match.away_team,
-        logo_url: match.away_team.logo_url.split("/").pop() || "default.png",
-      },
+      home_team: { ...match.home_team, logo_url: match.home_team.logo_url?.split("/").pop() || "default.png" },
+      away_team: { ...match.away_team, logo_url: match.away_team.logo_url?.split("/").pop() || "default.png" },
     }));
   };
 
   useEffect(() => {
     async function fetchMatches() {
       setLoading(true);
-      setTodayMatches([]);
-      setFutureMatches([]);
-console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.id);
+      setMatches([]);
 
-      const [today, future] = await Promise.all([
-        getMatchesToday(selectedLeague.id),
-        getMatchesFuture(selectedLeague.id),
-      ]);
+      try {
+        const matchesData = await getMatchesByLeague(selectedLeague.id);
 
-      setTodayMatches(fixTeamLogos(today));
-      setFutureMatches(fixTeamLogos(future));
+        if (!matchesData || matchesData.length === 0) {
+          console.warn("⚠️ Nenhum jogo encontrado — ativando modo demonstração.");
+          setIsDemo(true);
+          setShowDemoNotice(true);
+          setMatches(fakeMatches[selectedLeague.id] || []);
+        } else {
+          setIsDemo(false);
+          setMatches(fixTeamLogos(matchesData));
+        }
+      } catch (error) {
+        console.error("❌ Erro ao buscar jogos:", error);
+        setIsDemo(true);
+        setShowDemoNotice(true);
+        setMatches(fakeMatches[selectedLeague.id] || []);
+      }
+
       setLoading(false);
     }
+
     fetchMatches();
   }, [selectedLeague]);
+
+  // Oculta o aviso sutil após alguns segundos
+  useEffect(() => {
+    if (showDemoNotice) {
+      const timer = setTimeout(() => setShowDemoNotice(false), 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [showDemoNotice]);
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[80vh]">
         <Loader2 className="w-10 h-10 animate-spin text-primary" />
-        <p className="mt-3 text-muted-foreground">
-          Carregando partidas de {selectedLeague.nome}...
-        </p>
+        <p className="mt-3 text-muted-foreground">Carregando partidas...</p>
       </div>
     );
   }
 
+  const todayMatches = matches.filter(
+    (m) => m.status === "AO_VIVO" || m.status === "FINALIZADO"
+  );
+  const futureMatches = matches.filter((m) => m.status === "PRE_JOGO");
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-950 to-black text-white px-6 py-12">
-      {/* 🎯 HEADER */}
-      
-<motion.div
-  className="relative flex flex-col items-center mb-12 select-none"
-  initial={{ opacity: 0, y: -20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
->
-  <div className="flex items-center gap-4">
-    {/* Logo FutZone */}
-    <motion.img
-      src={window.location.hostname !== "localhost"
-        ? "/futzone-stream-hub/imagens/meu-logo.svg"
-        : "/imagens/meu-logo.svg"
-      }
-      alt="FutZone Logo"
-      className="w-14 h-14 object-contain"
-      initial={{ rotate: -20, scale: 0.8, opacity: 0 }}
-      animate={{ rotate: 0, scale: 1, opacity: 1 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      whileHover={{ scale: 1.1, rotate: 10 }}
-    />
+    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-950 to-black text-white px-6 py-12 relative">
+      {/* 🔹 Aviso sutil de modo demonstração */}
+      {showDemoNotice && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          className="fixed bottom-6 right-6 flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-400/40 px-4 py-2 rounded-xl shadow-lg backdrop-blur-md text-sm"
+        >
+          <AlertCircle className="w-4 h-4" />
+          <span>Modo demonstração — dados simulados</span>
+        </motion.div>
+      )}
 
-    {/* Título */}
-    <motion.span
-      className="text-5xl font-extrabold bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,255,100,0.6)]"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4, duration: 0.8 }}
-    >
-      Partidas em Destaque
-    </motion.span>
-  </div>
+      {/* HEADER */}
+      <motion.div
+        className="relative flex flex-col items-center mb-12 select-none"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="flex items-center gap-4">
+          <motion.img
+            src={
+              window.location.hostname !== "localhost"
+                ? "/futzone-stream-hub/imagens/meu-logo.svg"
+                : "/imagens/meu-logo.svg"
+            }
+            alt="FutZone Logo"
+            className="w-14 h-14 object-contain"
+            initial={{ rotate: -20, scale: 0.8, opacity: 0 }}
+            animate={{ rotate: 0, scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            whileHover={{ scale: 1.1, rotate: 10 }}
+          />
 
-  {/* Sombra / efeito decorativo */}
-  <div className="absolute left-1/2 top-full w-[300px] h-[60px] -translate-x-1/2 bg-gradient-to-b from-emerald-300/30 to-transparent blur-xl opacity-40" />
-</motion.div>
+          <motion.span
+            className="text-5xl font-extrabold bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,255,100,0.6)]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            Partidas em Destaque
+          </motion.span>
+        </div>
+      </motion.div>
 
-
-      {/* 🏆 SELETOR DE LIGAS */}
+      {/* SELETOR DE LIGAS */}
       <div className="flex flex-wrap justify-center gap-4 mb-10">
         {Object.values(LEAGUES).map((league) => (
           <motion.button
@@ -116,22 +174,11 @@ console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.i
         ))}
       </div>
 
-      {/* 🧱 GRID DE JOGOS */}
+      {/* GRID DE JOGOS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-7xl mx-auto">
         {/* Jogos de Hoje */}
         <div className="space-y-6">
-          <motion.div
-            className="flex flex-col items-center justify-center mb-6 select-none"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,255,100,0.6)]">
-              Jogos de Hoje
-            </h2>
-            <div className="w-40 h-2 mt-1 bg-gradient-to-r from-emerald-400 via-green-500 to-lime-400 rounded-full opacity-50 blur-md" />
-          </motion.div>
-
+          <h2 className="text-2xl md:text-3xl font-extrabold text-emerald-400">Jogos de Hoje</h2>
           {todayMatches.length === 0 ? (
             <p className="text-zinc-400">Nenhuma partida encontrada.</p>
           ) : (
@@ -166,18 +213,7 @@ console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.i
 
         {/* Próximos Jogos */}
         <div className="space-y-6">
-          <motion.div
-            className="flex flex-col items-center justify-center mb-6 select-none"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-400 text-white bg-clip-text drop-shadow-[0_0_12px_rgba(0,200,255,0.6)]">
-              Próximos Jogos
-            </h2>
-            <div className="w-40 h-2 mt-1 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-400 rounded-full opacity-50 blur-md" />
-          </motion.div>
-
+          <h2 className="text-2xl md:text-3xl font-extrabold text-cyan-400">Próximos Jogos</h2>
           {futureMatches.length === 0 ? (
             <p className="text-zinc-400">Nenhum jogo futuro encontrado.</p>
           ) : (
@@ -189,14 +225,7 @@ console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.i
               >
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-sm text-zinc-400">Agendado</span>
-                  <span className="text-sm text-zinc-400">
-                    {new Date(match.time).toLocaleDateString("pt-BR", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </span>
+                  <span className="text-sm text-zinc-400">{match.time}</span>
                 </div>
 
                 <div className="flex justify-between items-center">
