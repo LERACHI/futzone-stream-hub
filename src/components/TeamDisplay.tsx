@@ -26,7 +26,18 @@ const teamLogos: Record<string, string> = {
   "Napoli": "napoli.png",
   "Bahia": "bahia.png",
   "Atlético-PR": "atletico-pr.png",
-  // Adicione mais times se necessário
+  "Palmeiras": "palmeiras.png",
+  "Corinthians": "corinthians.png",
+  "Grêmio": "gremio.png",
+  "Vasco da Gama": "vasco-da-gama.png",
+  "Santos": "santos.png",
+  "Fluminense": "fluminense.png",
+  "Internacional": "internacional.png",
+  "Cruzeiro": "cruzeiro.png",
+  "Botafogo": "botafogo.png",
+  "Ceará": "ceara.png",
+  "Fortaleza": "fortaleza.png",
+   // Adicione mais times se necessário
 };
 
 const TeamDisplay = ({ team }: TeamDisplayProps) => {

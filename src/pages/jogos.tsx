@@ -27,7 +27,7 @@ const fakeMatches: Record<number, MatchType[]> = {
       time: "21:30",
       status: "PRE_JOGO",
       home_team: { name: "Corinthians", logo_url: "/imagens/times/corinthians.png", score: 0 },
-      away_team: { name: "São Paulo", logo_url: "/imagens/times/saopaulo.png", score: 0 },
+      away_team: { name: "São Paulo", logo_url: "/imagens/times/sao-paulo.png", score: 0 },
     },
   ],
   [LEAGUES.LIBERTADORES.id]: [
@@ -110,18 +110,48 @@ const Jogos = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-950 to-black text-white px-6 py-12 relative">
-      {/* 🔹 Aviso sutil de modo demonstração */}
-      {showDemoNotice && (
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          className="fixed bottom-6 right-6 flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-400/40 px-4 py-2 rounded-xl shadow-lg backdrop-blur-md text-sm"
-        >
-          <AlertCircle className="w-4 h-4" />
-          <span>Modo demonstração — dados simulados</span>
-        </motion.div>
-      )}
+      {/* 💡 Pop-up futurista piscante — DEMO MODE */}
+{showDemoNotice && (
+  <motion.div
+    initial={{ opacity: 0, y: 40, scale: 0.9 }}
+    animate={{ opacity: 1, y: 0, scale: 1 }}
+    exit={{ opacity: 0, y: 20, scale: 0.9 }}
+    transition={{ duration: 0.6 }}
+    className="fixed bottom-6 right-6 z-[9999]"
+  >
+    <motion.div
+      className="flex items-center gap-3 px-6 py-3 rounded-2xl bg-zinc-900/80 border border-emerald-400/50 backdrop-blur-xl shadow-[0_0_20px_rgba(0,255,180,0.3)]"
+      animate={{
+        opacity: [0.7, 1, 0.7],
+        scale: [1, 1.05, 1],
+      }}
+      transition={{
+        repeat: 3,
+        duration: 1.2,
+        ease: "easeInOut",
+      }}
+    >
+      <motion.div
+        animate={{
+          rotate: [0, -10, 10, 0],
+        }}
+        transition={{
+          duration: 1,
+          repeat: 1,
+          ease: "easeInOut",
+        }}
+        className="text-emerald-400 text-3xl"
+      >
+        ⚠️
+      </motion.div>
+
+      <span className="font-extrabold text-emerald-300 tracking-wider text-lg drop-shadow-[0_0_8px_rgba(0,255,180,0.9)]">
+        DEMO&nbsp;MODE
+      </span>
+    </motion.div>
+  </motion.div>
+)}
+
 
       {/* HEADER */}
       <motion.div
