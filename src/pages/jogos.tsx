@@ -32,6 +32,7 @@ const Jogos = () => {
       setLoading(true);
       setTodayMatches([]);
       setFutureMatches([]);
+console.log("Buscando jogos para a liga:", selectedLeague.nome, selectedLeague.id);
 
       const [today, future] = await Promise.all([
         getMatchesToday(selectedLeague.id),
